@@ -120,8 +120,8 @@ def test(model, device, x_test, y_test):
         correct = 0
         total = 0
 
-        x_test = torch.Tensor(x_test).cuda().float()
-        y_test = torch.Tensor(y_test).cuda().long()
+        x_test = torch.Tensor(x_test).float()
+        y_test = torch.Tensor(y_test).long()
 
         x_test = x_test.to(device)
         y_test = y_test.to(device)
@@ -168,3 +168,6 @@ except Exception as e:
 # train
 for epoch in range(0, Params.num_epochs.value):
     train(model, device, x_train, y_train, loss, optimizer, epoch)
+
+# test
+test(model, device, x_test, y_test)
