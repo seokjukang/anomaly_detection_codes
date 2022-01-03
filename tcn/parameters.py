@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Params(Enum):
     # hyper parameters
     num_epochs = 30

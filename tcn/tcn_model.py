@@ -1,12 +1,10 @@
 import numpy as np
 import pandas as pd
-import keras
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as f
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 from tcn.parameters import Params
 
