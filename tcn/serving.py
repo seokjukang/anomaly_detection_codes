@@ -3,10 +3,7 @@ from random import randint
 
 import numpy as np
 import torch
-import torch.nn as nn
-from tcn.tcn_model import TCN
-from tcn.config import Config
-from tcn.parameters import Params
+from common.config import Config
 from tcn.tcn_model import TCN
 from tcn.util import Util
 

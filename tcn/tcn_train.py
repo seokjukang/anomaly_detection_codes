@@ -1,14 +1,10 @@
 import sys
 import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import roc_auc_score
 import torch
 import torch.nn as nn
-import torch.nn.functional as f
 
-from tcn.config import Config
+from common.config import Config
 from tcn.parameters import Params
 from tcn.tcn_model import TCN
 from tcn.util import Util
