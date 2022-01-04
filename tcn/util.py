@@ -5,8 +5,7 @@ from sklearn.preprocessing import StandardScaler
 
 
 class Util:
-    @staticmethod
-    def get_train_test_data(file_path):
+    def get_train_test_data(self, file_path):
         x_train, x_test, y_train, y_test = None, None, None, None
         try:
             df = pd.read_csv(file_path)
@@ -44,7 +43,7 @@ class Util:
             y_train = x_train["Class"]
             y_test = x_test["Class"]
 
-            # reshape the train and test data sets
+            # reshape the train and test _data sets
             x_train = np.array(x_train).reshape((x_train.shape[0], 1, x_train.shape[1]))
             x_test = np.array(x_test).reshape((x_test.shape[0], 1, x_test.shape[1]))
             print(f"x_train reshaped: {x_train.shape}")
