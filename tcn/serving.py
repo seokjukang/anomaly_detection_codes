@@ -3,7 +3,7 @@ from random import randint
 
 import numpy as np
 import torch
-from common.config import Config
+from _common.config import Config
 from tcn.tcn_model import TCN
 from tcn.util import Util
 
@@ -30,6 +30,7 @@ def serve(model, x, config):
 
 # serve test
 x_train, x_test, y_train, y_test = None, None, None, None
+util = Util()
 try:
     PATH = "tcn_model.ckpt"
     config = Config()
@@ -44,7 +45,7 @@ try:
     print(f"device: {device}")
     print(f"model: {model}")
 
-    x_train, x_test, y_train, y_test = Util.get_train_test_data('data/creditcard.csv')
+    x_train, x_test, y_train, y_test = util.get_train_test_data('../_data/creditcard.csv')
     for i in range(100):
         x = x_test[randint(1, len(x_test) - 1), :]
         x = np.array(x).reshape((x.shape[0], 1, x.shape[1]))

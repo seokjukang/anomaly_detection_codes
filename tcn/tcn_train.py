@@ -4,7 +4,7 @@ from sklearn.metrics import roc_auc_score
 import torch
 import torch.nn as nn
 
-from common.config import Config
+from _common.config import Config
 from tcn.parameters import Params
 from tcn.tcn_model import TCN
 from tcn.util import Util
@@ -87,6 +87,7 @@ def test(model, device, x_test, y_test):
 # train
 x_train, x_test, y_train, y_test = None, None, None, None
 device = None
+util = Util()
 try:
     config = Config()
     device = config.device
@@ -97,7 +98,7 @@ try:
     model = TCN().to(device)
     loss = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=Params.learning_rate.value)
-    x_train, x_test, y_train, y_test = Util.get_train_test_data('data/creditcard.csv')
+    x_train, x_test, y_train, y_test = util.get_train_test_data('../_data/creditcard.csv')
 
     for epoch in range(0, Params.num_epochs.value):
         train(model, device, x_train, y_train, loss, optimizer, epoch)
