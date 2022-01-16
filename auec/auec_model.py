@@ -1,6 +1,6 @@
-from keras import regularizers
-from keras.layers import Dense, Input
-from keras.models import Model
+from tensorflow.keras import regularizers
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.models import Model
 
 base_log_file_name = "autoencoder"
 

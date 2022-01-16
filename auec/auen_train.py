@@ -1,7 +1,7 @@
 import sys
 
 import numpy as np
-from keras.callbacks import TensorBoard
+from tensorflow.keras.callbacks import TensorBoard
 from tensorflow.keras.optimizers import RMSprop, Adam, Nadam
 from sklearn.metrics import classification_report, roc_auc_score
 
