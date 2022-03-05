@@ -1,14 +1,12 @@
-import sys
-
 import numpy as np
 from tensorflow.keras.callbacks import TensorBoard
-from tensorflow.keras.optimizers import RMSprop, Adam, Nadam
+from tensorflow.keras.optimizers import RMSprop
 from sklearn.metrics import classification_report, roc_auc_score
 
 from auec.auec_model import Autoencoder
 from auec.parameters import Params
 from auec.util import Util
-from auec.visualize import Visualization
+from _common.visualize import Visualization
 
 PATH = "autoencoder_model.h5"
 
@@ -72,28 +70,29 @@ def save_model(mdl, path):
     mdl.save(path)
 
 
-# train
-model = None
-callback = None
-encoder = Autoencoder()
-util = Util()
-x_train, x_test, y_train, y_test = \
-    util.get_train_test_data('../_data/creditcard.csv')
-if x_train is not None:
-    model = encoder.get_deep_model(x_train)
-    callback = TensorBoard(log_dir='../logs/{0}'.format(encoder.log_file_name))
+if __name__ == "__main__":
+    # train
+    model = None
+    callback = None
+    encoder = Autoencoder()
+    util = Util()
+    x_train, x_test, y_train, y_test = \
+        util.get_train_test_data('../_data/creditcard.csv')
+    if x_train is not None:
+        model = encoder.get_deep_model(x_train)
+        callback = TensorBoard(log_dir='../logs/{0}'.format(encoder.log_file_name))
 
-hist = train(model, x_train, x_test, callback)
+    hist = train(model, x_train, x_test, callback)
 
-# save model
-save_model(model, PATH)
+    # save model
+    save_model(model, PATH)
 
-# test
-y_lbl, err = test(model, x_test, y_test)
+    # test
+    y_lbl, err = test(model, x_test, y_test)
 
-# visualize
-viz = Visualization()
-viz.draw_confusion_matrix(y_test, y_lbl)
-viz.draw_anomaly(y_test, err, Params.threshold.value)
+    # visualize
+    viz = Visualization()
+    viz.draw_confusion_matrix(y_test, y_lbl)
+    viz.draw_anomaly(y_test, err, Params.threshold.value)
 
 
